@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form id="frm">
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" rendered="true"
+				value="#{perfilUsuarioMenuDependenteAjax.nome}" />
+
+			<p:outputLabel value="Estado" for="estado" />
+			<p:selectOneMenu id="estado"
+				value="#{perfilUsuarioMenuDependenteAjax.estado}">
+				<p:ajax event="change" process="@this" update="cidade" listener="#{perfilUsuarioMenuDependenteAjax.carregarCidades}"/>
+				<f:selectItem itemLabel="-Selecione-" />
+				<f:selectItems value="#{perfilUsuarioMenuDependenteAjax.estados}"
+					var="estado" itemLabel="#{estado}" itemValue="#{estado}" />
+
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Cidade" for="cidade" />
+			
+			<p:selectOneMenu id="cidade"
+				value="#{perfilUsuarioMenuDependenteAjax.cidade}">
+				<f:selectItem itemLabel="-Selecione-" />
+				<f:selectItems value="#{perfilUsuarioMenuDependenteAjax.cidades}"
+					var="cidade" itemLabel="#{cidade}" itemValue="#{ciadade}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+
+		<p:commandButton value="Atualizar"
+			action="#{perfilUsuarioMenuDependenteAjax.atualizar}" update="@form" />
+
+	</h:form>
+</h:body>
+</html>

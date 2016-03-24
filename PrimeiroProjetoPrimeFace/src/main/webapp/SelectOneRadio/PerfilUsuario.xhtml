@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<style>
+		.sem-Borda td {
+			border: 0 !important;
+			padding: 5px;
+		}
+		
+		.cel-radio td{
+			text-align: center !important;
+		}
+	</style>
+</h:head>
+<h:body>
+	<h:form id="frm">
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" rendered="true"
+				value="#{perfilUsuarioSelectOneRadio.nome}" />
+
+			<p:outputLabel value="Sexo" for="sexo" />
+
+			<p:selectOneRadio id="sexo"
+				value="#{perfilUsuarioSelectOneRadio.sexo}" required="true"
+				styleClass="sem-Borda" layout="pageDirection">
+				<f:selectItem itemLabel="Masculino" itemValue="M" />
+				<f:selectItem itemLabel="Feminino" itemValue="F" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="Estado Civil" for="estadoCivil" />
+			<h:panelGroup styleClass="sem-Borda">
+				<p:selectOneRadio id="estadoCivil"
+					value="#{perfilUsuarioSelectOneRadio.estadoCivil}" required="true"
+					layout="custom">
+					<f:selectItem itemValue="solteiro" />
+					<f:selectItem itemValue="casado" />
+					<f:selectItem itemValue="divorciado" />
+				</p:selectOneRadio>
+
+				<p:panelGrid columns="3" styleClass="sem-Borda" >
+					<p:radioButton id="opt1" for="estadoCivil" itemIndex="0" />
+					<p:radioButton id="opt2" for="estadoCivil" itemIndex="1" />
+					<p:radioButton id="opt3" for="estadoCivil" itemIndex="3" />
+
+					<p:outputLabel value="Solteiro" for="opt1" />
+					<p:outputLabel value="Casado" for="opt2" />
+					<p:outputLabel value="Divorciado" for="opt3" />
+				</p:panelGrid>
+
+			</h:panelGroup>
+		</p:panelGrid>
+
+		<p:commandButton value="Atualizar"
+			action="#{perfilUsuarioSelectOneRadio.atualizar}" update="@form" />
+
+	</h:form>
+</h:body>
+</html>

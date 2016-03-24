@@ -21,17 +21,39 @@
 			<p:outputLabel value="Profissão" for="profissao" />
 			<p:selectOneMenu id="profissao"
 				value="#{perfilUsuarioSelectOneMenu.profissao}" required="true">
-				
+
 				<f:selectItem itemLabel="Estudante" itemValue="1" />
 				<f:selectItem itemLabel="Desenvolvedor" itemValue="2" />
 				<f:selectItem itemLabel="Empresário" itemValue="3" />
 				<f:selectItem itemLabel="Outras" itemValue="4" />
 			</p:selectOneMenu>
 
+			<p:outputLabel value="Interesse" for="interesse" />
+			<p:selectOneMenu id="interesse"
+				value="#{perfilUsuarioSelectOneListBoxBean.interesse}"
+				required="true" converter="interesse" var="i" filter="true" filterMatchMode="startsWith">
+				<f:selectItem itemLabel="Selecione"/>
+				<f:selectItems
+					value="#{perfilUsuarioSelectOneListBoxBean.interesses}"
+					var="interesse" itemLabel="#{interesse.descricao}"
+					itemValue="#{interesse}" />
+
+				<p:column>
+					<h:graphicImage library="imagens" name="#{i.nomeIcone}.jpg"/>
+				</p:column>
+				<p:column>
+					<p:outputLabel value="#{i.descricao}"/>
+				</p:column>
+			</p:selectOneMenu>
+
 		</p:panelGrid>
 
 		<p:commandButton value="Atualizar"
 			action="#{perfilUsuarioSelectOneMenu.atualizar}" update="@form" />
+
+		<p:commandButton value="Atualizar Filtro"
+			action="#{perfilUsuarioSelectOneListBoxBean.atualizar}"
+			update="@form" />
 
 	</h:form>
 </h:body>
