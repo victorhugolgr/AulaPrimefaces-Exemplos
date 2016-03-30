@@ -8,6 +8,35 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script>
+	PrimeFaces.locales['pt'] = {
+            closeText: 'Fechar',
+            prevText: 'Anterior',
+            nextText: 'Próximo',
+            currentText: 'Começo',
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+            dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+            dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+            dayNamesMin: ['D','S','T','Q','Q','S','S'],
+            weekHeader: 'Semana',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Só Horas',
+            timeText: 'Tempo',
+            hourText: 'Hora',
+            minuteText: 'Minuto',
+            secondText: 'Segundo',
+            currentText: 'Data Atual',
+            ampm: false,
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia',
+            allDayText : 'Todo Dia'
+        };
+	</script>
 </h:head>
 <body>
 
@@ -27,12 +56,32 @@
 			<p:outputLabel value="Cidade do Contrato" for="cidadeContrato" />
 			<p:autoComplete id="cidadeContrato"
 				value="#{exercicioBean.cidadeContrato}"
-				completeMethod="#{exercicioBean.autoCompleteCidade}" forceSelection="true"/>
+				completeMethod="#{exercicioBean.autoCompleteCidade}"
+				forceSelection="true" />
+
+			<p:outputLabel value="Modalidade" for="modalidade" />
+			<p:selectOneRadio id="modalidade" value="#{exercicioBean.modalidade}">
+				<f:selectItem itemLabel="EAD" itemValue="ead" />
+				<f:selectItem itemLabel="Presencial" itemValue="presencial" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="Data do Contrato" for="dataContrato" />
+			<p:calendar id="dataContrato" value="#{exercicioBean.dataContrato}"
+				pattern="dd/MM/yyyy" locale="pt" readonly="true"/>
+				
+			<p:outputLabel value="Valor do Contrato" for="valorContrato"/>
+			<p:inputText id="valorContrato" value="#{exercicioBean.valorContrato}"/>	
+			
+				
+				
+			<f:facet name="footer">
+				<p:commandButton value="Cadastrar"
+					action="#{exercicioBean.cadastrar}" update="@form" />
+
+			</f:facet>
 
 		</p:panelGrid>
 		<br />
-		<p:commandButton value="Cadastrar" action="#{exercicioBean.cadastrar}"
-			update="@form" />
 	</h:form>
 </body>
 </html>

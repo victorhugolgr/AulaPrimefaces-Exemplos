@@ -12,6 +12,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.victor.model.FormaPagamento;
+import br.com.victor.model.MetodoPagamento;
+
 @ManagedBean
 @ViewScoped
 public class ExercicioBean implements Serializable {
@@ -21,13 +24,16 @@ public class ExercicioBean implements Serializable {
 	private String razaoSocial;
 	private String cnpj;
 	private String cidadeContrato;
+	private String modalidade;
 	private Date dataContrato;
 	private double valorContrato;
-	private String metodoPagamento;
-	private String formaPagamento;
+	private MetodoPagamento metodoPagamento;
+	private FormaPagamento formaPagamento;
 	private List<String> cursosContratados;
 
 	private List<String> cidades = new ArrayList<>();
+
+	public List<MetodoPagamento> metodosPagamento = new ArrayList<>();
 
 	public ExercicioBean() {
 		cidades.add("Belém");
@@ -36,6 +42,22 @@ public class ExercicioBean implements Serializable {
 		cidades.add("Castanhal");
 		cidades.add("Benevides");
 		cidades.add("Murinin");
+
+		MetodoPagamento mp1 = new MetodoPagamento("Cartão de Crédito");
+		mp1.adicionarFormaPamento("À vista").adicionarFormaPamento("1x")
+				.adicionarFormaPamento("2x")
+				.adicionarFormaPamento("6x");
+
+		MetodoPagamento mp2 = new MetodoPagamento("Cheque");
+		mp2.adicionarFormaPamento("À vista")
+			.adicionarFormaPamento("Entrada + 30 dias");
+
+		MetodoPagamento mp3 = new MetodoPagamento("Boleto");
+		mp3.adicionarFormaPamento("À vista");
+
+		metodosPagamento.add(mp1);
+		metodosPagamento.add(mp2);
+		metodosPagamento.add(mp3);
 	}
 
 	public void cadastrar() {
@@ -100,19 +122,20 @@ public class ExercicioBean implements Serializable {
 		this.valorContrato = valorContrato;
 	}
 
-	public String getMetodoPagamento() {
+
+	public MetodoPagamento getMetodoPagamento() {
 		return metodoPagamento;
 	}
 
-	public void setMetodoPagamento(String metodoPagamento) {
+	public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
 		this.metodoPagamento = metodoPagamento;
 	}
 
-	public String getFormaPagamento() {
+	public FormaPagamento getFormaPagamento() {
 		return formaPagamento;
 	}
 
-	public void setFormaPagamento(String formaPagamento) {
+	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
 
@@ -122,6 +145,14 @@ public class ExercicioBean implements Serializable {
 
 	public void setCursosContratados(List<String> cursosContratados) {
 		this.cursosContratados = cursosContratados;
+	}
+
+	public String getModalidade() {
+		return modalidade;
+	}
+
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
 	}
 
 }
