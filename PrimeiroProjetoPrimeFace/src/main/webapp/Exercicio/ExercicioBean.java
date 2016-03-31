@@ -34,6 +34,8 @@ public class ExercicioBean implements Serializable {
 	private List<String> cidades = new ArrayList<>();
 
 	public List<MetodoPagamento> metodosPagamento = new ArrayList<>();
+	
+	private List<FormaPagamento> formasPagamento;
 
 	public ExercicioBean() {
 		cidades.add("Belém");
@@ -83,8 +85,11 @@ public class ExercicioBean implements Serializable {
 	
 	//Teste	
 	public void carregaFormaPagamento(){
-		for (FormaPagamento formaPagamento : metodoPagamento.getFormasPagamento()) {
-			System.out.println(formaPagamento.getFormaPagamento());
+		if(metodoPagamento != null){	
+			System.out.println(metodoPagamento.getFormasPagamento().size());
+			setFormasPagamento(metodoPagamento.getFormasPagamento());
+		}else{
+			System.out.println("Método de Pagamento Nula");
 		}
 	}
 
@@ -162,5 +167,13 @@ public class ExercicioBean implements Serializable {
 
 	public List<MetodoPagamento> getMetodosPagamento() {
 		return metodosPagamento;
+	}
+
+	public List<FormaPagamento> getFormasPagamento() {
+		return formasPagamento;
+	}
+
+	public void setFormasPagamento(List<FormaPagamento> formasPagamento) {
+		this.formasPagamento = formasPagamento;
 	}
 }

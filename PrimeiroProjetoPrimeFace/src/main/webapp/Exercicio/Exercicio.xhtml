@@ -81,7 +81,7 @@
 					var="metodoPagamento"
 					itemLabel="#{metodoPagamento.metodoPagamento}"
 					itemValue="#{metodoPagamento}" />
-				<p:ajax process="metodoPagamento" update="formaPagamento"/>	
+				<p:ajax process="metodoPagamento" update="formaPagamento" listener="#{exercicioBean.carregaFormaPagamento}"/>	
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
@@ -89,7 +89,7 @@
 				value="#{exercicioBean.formaPagamento}" converter="formaPagamento">
 				<f:selectItem itemLabel="-Selecione-" />
 				<f:selectItems
-					value="#{exercicioBean.metodoPagamento.formasPagamento}"
+					value="#{exercicioBean.formasPagamento}"
 					var="formasPagamento" itemLabel="#{formaPagamento.formaPagamento}"
 					itemValue="formaPagamento"/>
 			</p:selectOneMenu>
