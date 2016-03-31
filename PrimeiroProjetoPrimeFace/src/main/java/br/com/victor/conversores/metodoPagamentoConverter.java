@@ -5,34 +5,36 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import Exercicio.ExercicioBean;
 import br.com.victor.model.MetodoPagamento;
 
-@FacesConverter("metodoPagamento")
-public class metodoPagamentoConverter implements Converter{
+@FacesConverter(forClass = MetodoPagamento.class)
+public class metodoPagamentoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		if(value != null){
-			ExercicioBean exercicioBean = new ExercicioBean();
-			for (MetodoPagamento metodoPagamento : exercicioBean.metodosPagamento) {
-				if (value.toUpperCase().equals(metodoPagamento.getMetodoPagamento())) {
-					return metodoPagamento;
-				}
-			}
+		if (value != null && !value.isEmpty()) {
+			System.out.println("Convertendo..");
+			MetodoPagamento mp = (MetodoPagamento) component.getAttributes().get(value);
+			System.out.println("Nulo?: " + mp == null);
+			System.out.println(mp.getMetodoPagamento());
+			return mp;
 		}
+		System.out.println("Conversor retornou nulo");
 		return null;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
-		if (value != null) {
+		if (value instanceof MetodoPagamento) {
 			MetodoPagamento metodoPagamento = (MetodoPagamento) value;
-			return metodoPagamento.getMetodoPagamento();
+			if (metodoPagamento != null && metodoPagamento instanceof MetodoPagamento
+					&& metodoPagamento.getFormasPagamento() != null) {
+				component.getAttributes().put(metodoPagamento.getMetodoPagamento().toString(), metodoPagamento);
+				return metodoPagamento.getMetodoPagamento().toString();
+			}
 		}
-		
-		return null;
+		return "";
 	}
 
 }

@@ -5,32 +5,31 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import Exercicio.ExercicioBean;
 import br.com.victor.model.FormaPagamento;
+import br.com.victor.model.MetodoPagamento;
 
-@FacesConverter("formaPagamento")
-public class FormaPagamentoConverter implements Converter{
+@FacesConverter(forClass = FormaPagamento.class)
+public class FormaPagamentoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		if(value != null){
-			ExercicioBean exercicioBean = new ExercicioBean();
-			for (FormaPagamento formaPagamento : exercicioBean.getMetodoPagamento().getFormasPagamento()) {
-				if(value.equalsIgnoreCase(formaPagamento.getFormaPagamento())){
-					return formaPagamento;
-				}
-			}
+		if (value != null && !value.isEmpty()) {
+			return (FormaPagamento) component.getAttributes().get(value);
 		}
 		return null;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if(value != null){
+		if (value instanceof FormaPagamento) {
 			FormaPagamento formaPagamento = (FormaPagamento) value;
-			return formaPagamento.getFormaPagamento();
+			if (formaPagamento != null && formaPagamento instanceof FormaPagamento
+					&& formaPagamento.getFormaPagamento() != null) {
+				component.getAttributes().put(formaPagamento.getFormaPagamento().toString(), formaPagamento);
+				return formaPagamento.getFormaPagamento().toString();
+			}
 		}
-		return null;
+		return "";
 	}
 
 }

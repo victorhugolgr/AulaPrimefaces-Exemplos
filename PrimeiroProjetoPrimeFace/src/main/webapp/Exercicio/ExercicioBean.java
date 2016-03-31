@@ -85,12 +85,7 @@ public class ExercicioBean implements Serializable {
 	
 	//Teste	
 	public void carregaFormaPagamento(){
-		if(metodoPagamento != null){	
-			System.out.println(metodoPagamento.getFormasPagamento().size());
-			setFormasPagamento(metodoPagamento.getFormasPagamento());
-		}else{
-			System.out.println("Método de Pagamento Nula");
-		}
+		metodoPagamento.getFormasPagamento();
 	}
 
 	public String getRazaoSocial() {
