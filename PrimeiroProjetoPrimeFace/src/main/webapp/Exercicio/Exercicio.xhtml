@@ -67,13 +67,33 @@
 
 			<p:outputLabel value="Data do Contrato" for="dataContrato" />
 			<p:calendar id="dataContrato" value="#{exercicioBean.dataContrato}"
-				pattern="dd/MM/yyyy" locale="pt" readonly="true"/>
-				
-			<p:outputLabel value="Valor do Contrato" for="valorContrato"/>
-			<p:inputText id="valorContrato" value="#{exercicioBean.valorContrato}"/>	
-			
-				
-				
+				pattern="dd/MM/yyyy" locale="pt" readonly="true" />
+
+			<p:outputLabel value="Valor do Contrato" for="valorContrato" />
+			<p:inputText id="valorContrato"
+				value="#{exercicioBean.valorContrato}" />
+
+			<p:outputLabel value="Método de Pagamento" for="metodoPagamento" />
+			<p:selectOneMenu id="metodoPagamento"
+				value="#{exercicioBean.metodoPagamento}" converter="metodoPagamento">
+				<f:selectItem itemLabel="-Selecione-" />
+				<f:selectItems value="#{exercicioBean.metodosPagamento}"
+					var="metodoPagamento"
+					itemLabel="#{metodoPagamento.metodoPagamento}"
+					itemValue="#{metodoPagamento}" />
+				<p:ajax process="metodoPagamento" update="formaPagamento"/>	
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
+			<p:selectOneMenu id="formaPagamento"
+				value="#{exercicioBean.formaPagamento}" converter="formaPagamento">
+				<f:selectItem itemLabel="-Selecione-" />
+				<f:selectItems
+					value="#{exercicioBean.metodoPagamento.formasPagamento}"
+					var="formasPagamento" itemLabel="#{formaPagamento.formaPagamento}"
+					itemValue="formaPagamento"/>
+			</p:selectOneMenu>
+
 			<f:facet name="footer">
 				<p:commandButton value="Cadastrar"
 					action="#{exercicioBean.cadastrar}" update="@form" />

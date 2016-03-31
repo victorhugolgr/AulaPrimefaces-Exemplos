@@ -5,13 +5,13 @@ import java.util.List;
 
 public class MetodoPagamento {
 
-	private String modeloPagamento;
+	private String metodoPagamento;
 
 	private List<FormaPagamento> formasPagamento;
 	
 	public MetodoPagamento(String modeloPagamento) {
 		setFormasPagamento(new ArrayList<>());
-		this.modeloPagamento = modeloPagamento;
+		this.metodoPagamento = modeloPagamento;
 	}
 
 	public MetodoPagamento adicionarFormaPamento(String formaPagamento){
@@ -19,12 +19,12 @@ public class MetodoPagamento {
 		return this;
 	}
 	
-	public String getModeloPagamento() {
-		return modeloPagamento;
+	public String getMetodoPagamento() {
+		return metodoPagamento;
 	}
 
-	public void setModeloPagamento(String modeloPagamento) {
-		this.modeloPagamento = modeloPagamento;
+	public void setMetodoPagamento(String modeloPagamento) {
+		this.metodoPagamento = modeloPagamento;
 	}
 
 	public List<FormaPagamento> getFormasPagamento() {

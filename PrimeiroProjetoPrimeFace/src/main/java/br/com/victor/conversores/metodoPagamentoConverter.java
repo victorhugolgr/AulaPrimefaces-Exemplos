@@ -8,15 +8,15 @@ import javax.faces.convert.FacesConverter;
 import Exercicio.ExercicioBean;
 import br.com.victor.model.MetodoPagamento;
 
-@FacesConverter("modeloPagamento")
-public class modeloPagamentoConverter implements Converter{
+@FacesConverter("metodoPagamento")
+public class metodoPagamentoConverter implements Converter{
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if(value != null){
 			ExercicioBean exercicioBean = new ExercicioBean();
 			for (MetodoPagamento metodoPagamento : exercicioBean.metodosPagamento) {
-				if (value.toUpperCase().equals(metodoPagamento.getModeloPagamento())) {
+				if (value.toUpperCase().equals(metodoPagamento.getMetodoPagamento())) {
 					return metodoPagamento;
 				}
 			}
@@ -29,7 +29,7 @@ public class modeloPagamentoConverter implements Converter{
 
 		if (value != null) {
 			MetodoPagamento metodoPagamento = (MetodoPagamento) value;
-			return metodoPagamento.getModeloPagamento();
+			return metodoPagamento.getMetodoPagamento();
 		}
 		
 		return null;

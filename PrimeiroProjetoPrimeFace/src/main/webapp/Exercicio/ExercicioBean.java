@@ -44,13 +44,11 @@ public class ExercicioBean implements Serializable {
 		cidades.add("Murinin");
 
 		MetodoPagamento mp1 = new MetodoPagamento("Cartão de Crédito");
-		mp1.adicionarFormaPamento("À vista").adicionarFormaPamento("1x")
-				.adicionarFormaPamento("2x")
+		mp1.adicionarFormaPamento("À vista").adicionarFormaPamento("1x").adicionarFormaPamento("2x")
 				.adicionarFormaPamento("6x");
 
 		MetodoPagamento mp2 = new MetodoPagamento("Cheque");
-		mp2.adicionarFormaPamento("À vista")
-			.adicionarFormaPamento("Entrada + 30 dias");
+		mp2.adicionarFormaPamento("À vista").adicionarFormaPamento("Entrada + 30 dias");
 
 		MetodoPagamento mp3 = new MetodoPagamento("Boleto");
 		mp3.adicionarFormaPamento("À vista");
@@ -79,7 +77,15 @@ public class ExercicioBean implements Serializable {
 	}
 
 	public List<String> autoCompleteCidade(String consulta) {
+		System.out.println(consulta);
 		return cidades.stream().filter(s -> s.toLowerCase().startsWith(consulta)).collect(Collectors.toList());
+	}
+	
+	//Teste	
+	public void carregaFormaPagamento(){
+		for (FormaPagamento formaPagamento : metodoPagamento.getFormasPagamento()) {
+			System.out.println(formaPagamento.getFormaPagamento());
+		}
 	}
 
 	public String getRazaoSocial() {
@@ -122,7 +128,6 @@ public class ExercicioBean implements Serializable {
 		this.valorContrato = valorContrato;
 	}
 
-
 	public MetodoPagamento getMetodoPagamento() {
 		return metodoPagamento;
 	}
@@ -155,4 +160,7 @@ public class ExercicioBean implements Serializable {
 		this.modalidade = modalidade;
 	}
 
+	public List<MetodoPagamento> getMetodosPagamento() {
+		return metodosPagamento;
+	}
 }
