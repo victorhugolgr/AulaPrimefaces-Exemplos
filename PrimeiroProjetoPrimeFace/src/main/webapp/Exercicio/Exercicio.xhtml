@@ -41,6 +41,7 @@
 <body>
 
 	<h:form>
+		<p:messages autoUpdate="true" />
 		<p:panelGrid columns="2">
 			<f:facet name="header">
 			Cadastro de Contrato de Treinamento
@@ -76,22 +77,21 @@
 			<p:outputLabel value="Método de Pagamento" for="metodoPagamento" />
 			<p:selectOneMenu id="metodoPagamento"
 				value="#{exercicioBean.metodoPagamento}" converter="metodoPagamento">
+				<p:ajax process="@this" update="formaPagamento" listener="#{exercicioBean.carregaFormaPagamento}" />
 				<f:selectItem itemLabel="-Selecione-" />
 				<f:selectItems value="#{exercicioBean.metodosPagamento}"
 					var="metodoPagamento"
 					itemLabel="#{metodoPagamento.metodoPagamento}"
 					itemValue="#{metodoPagamento}" />
-				<p:ajax process="metodoPagamento" update="formaPagamento" listener="#{exercicioBean.carregaFormaPagamento}"/>	
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
 			<p:selectOneMenu id="formaPagamento"
 				value="#{exercicioBean.formaPagamento}" converter="formaPagamento">
 				<f:selectItem itemLabel="-Selecione-" />
-				<f:selectItems
-					value="#{exercicioBean.formasPagamento}"
+				<f:selectItems value="#{exercicioBean.formasPagamento}"
 					var="formasPagamento" itemLabel="#{formaPagamento.formaPagamento}"
-					itemValue="formaPagamento"/>
+					itemValue="formaPagamento" />
 			</p:selectOneMenu>
 
 			<f:facet name="footer">
