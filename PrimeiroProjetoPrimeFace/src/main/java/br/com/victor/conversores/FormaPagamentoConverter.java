@@ -6,7 +6,6 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import br.com.victor.model.FormaPagamento;
-import br.com.victor.model.MetodoPagamento;
 
 @FacesConverter(forClass = FormaPagamento.class)
 public class FormaPagamentoConverter implements Converter {
@@ -25,8 +24,8 @@ public class FormaPagamentoConverter implements Converter {
 			FormaPagamento formaPagamento = (FormaPagamento) value;
 			if (formaPagamento != null && formaPagamento instanceof FormaPagamento
 					&& formaPagamento.getFormaPagamento() != null) {
-				component.getAttributes().put(formaPagamento.getFormaPagamento().toString(), formaPagamento);
-				return formaPagamento.getFormaPagamento().toString();
+				component.getAttributes().put(formaPagamento.getFormaPagamento(), formaPagamento);
+				return formaPagamento.getFormaPagamento();
 			}
 		}
 		return "";

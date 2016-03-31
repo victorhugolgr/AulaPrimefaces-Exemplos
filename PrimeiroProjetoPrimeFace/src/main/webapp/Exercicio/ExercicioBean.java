@@ -79,8 +79,7 @@ public class ExercicioBean implements Serializable {
 	}
 
 	public List<String> autoCompleteCidade(String consulta) {
-		System.out.println(consulta);
-		return cidades.stream().filter(s -> s.toLowerCase().startsWith(consulta)).collect(Collectors.toList());
+		return cidades.stream().filter(s -> s.toLowerCase().startsWith(consulta.toLowerCase())).collect(Collectors.toList());
 	}
 	
 	//Teste	
