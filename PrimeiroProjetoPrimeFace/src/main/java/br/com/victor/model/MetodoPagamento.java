@@ -40,7 +40,7 @@ public class MetodoPagamento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "MetodoPagamento [metodoPagamento=" + metodoPagamento + ", formasPagamento=" + formasPagamento + "]";
+		return getMetodoPagamento();
 	}
 
 	@Override

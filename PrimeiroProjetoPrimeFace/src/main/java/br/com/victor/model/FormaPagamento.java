@@ -22,7 +22,7 @@ public class FormaPagamento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "FormaPagamento [formaPagamento=" + formaPagamento + "]";
+		return getFormaPagamento();
 	}
 
 	@Override

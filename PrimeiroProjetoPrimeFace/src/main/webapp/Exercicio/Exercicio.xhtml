@@ -48,36 +48,38 @@
 		</f:facet>
 
 			<p:outputLabel value="Razão Social:" for="razaoSocial" />
-			<p:inputText id="razaoSocial" value="#{exercicioBean.razaoSocial}" />
+			<p:inputText id="razaoSocial" value="#{exercicioBean.razaoSocial}"
+				required="true" />
 
 			<p:outputLabel value="CNPJ" for="cnpj" />
 			<p:inputMask mask="99.999.999/9999-99" value="#{exercicioBean.cnpj}"
-				id="cnpj" />
+				id="cnpj" required="true" />
 
 			<p:outputLabel value="Cidade do Contrato" for="cidadeContrato" />
 			<p:autoComplete id="cidadeContrato"
 				value="#{exercicioBean.cidadeContrato}"
 				completeMethod="#{exercicioBean.autoCompleteCidade}"
-				forceSelection="true" />
+				forceSelection="true" required="true" />
 
 			<p:outputLabel value="Modalidade" for="modalidade" />
-			<p:selectOneRadio id="modalidade" value="#{exercicioBean.modalidade}">
+			<p:selectOneRadio id="modalidade" value="#{exercicioBean.modalidade}"
+				required="true">
 				<f:selectItem itemLabel="EAD" itemValue="ead" />
 				<f:selectItem itemLabel="Presencial" itemValue="presencial" />
 			</p:selectOneRadio>
 
 			<p:outputLabel value="Data do Contrato" for="dataContrato" />
 			<p:calendar id="dataContrato" value="#{exercicioBean.dataContrato}"
-				pattern="dd/MM/yyyy" locale="pt" readonly="true" />
+				pattern="dd/MM/yyyy" locale="pt" required="true" readonlyInput="true"/>
 
 			<p:outputLabel value="Valor do Contrato" for="valorContrato" />
 			<p:inputText id="valorContrato"
-				value="#{exercicioBean.valorContrato}" />
+				value="#{exercicioBean.valorContrato}" required="true" />
 
 			<p:outputLabel value="Método de Pagamento" for="metodoPagamento" />
 			<p:selectOneMenu id="metodoPagamento"
-				value="#{exercicioBean.metodoPagamento}">
-				<p:ajax process="@this" update="formaPagamento"/>
+				value="#{exercicioBean.metodoPagamento}" required="true">
+				<p:ajax process="@this" update="formaPagamento" />
 				<f:selectItem itemLabel="-Selecione-" />
 				<f:selectItems value="#{exercicioBean.metodosPagamento}"
 					var="metodoPagamento"
@@ -88,11 +90,28 @@
 			<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
 			<p:selectOneMenu id="formaPagamento"
 				value="#{exercicioBean.formaPagamento}">
+				
 				<f:selectItem itemLabel="-Selecione-" />
-				<f:selectItems value="#{exercicioBean.metodoPagamento.formasPagamento}"
+				<f:selectItems
+					value="#{exercicioBean.metodoPagamento.formasPagamento}"
 					var="formasPagamento" itemLabel="#{formaPagamento.formaPagamento}"
 					itemValue="formaPagamento" />
 			</p:selectOneMenu>
+
+			<p:outputLabel value="Cursos Contratados" for="cursosContratados" />
+			<p:selectManyCheckbox id="cursosContratados"
+				value="#{exercicioBean.cursosContratados}" layout="pageDirection"
+				required="true">
+				<f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos"
+					itemValue="Fundamentos Java e Orientação a Objetos" />
+				<f:selectItem itemLabel="Desenvolvimento Web com JSF 2"
+					itemValue="Desenvolvimento Web com JSF 2" />
+				<f:selectItem
+					itemLabel="Persistência de Dados com JPA 2 e Hibernate"
+					itemValue="Persistência de Dados com JPA 2 e Hibernate" />
+				<f:selectItem itemLabel="Gerenciamento Ágil de Projetos com Scrum"
+					itemValue="Gerenciamento Ágil de Projetos com Scrum" />
+			</p:selectManyCheckbox>
 
 			<f:facet name="footer">
 				<p:commandButton value="Cadastrar"
