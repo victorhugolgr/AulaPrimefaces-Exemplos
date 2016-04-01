@@ -13,8 +13,11 @@ public class FormaPagamentoConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if (value != null && !value.isEmpty()) {
-			return (FormaPagamento) component.getAttributes().get(value);
+			FormaPagamento formaPagamento = (FormaPagamento) component.getAttributes().get(value);
+			System.out.println(formaPagamento.getFormaPagamento());
+			return formaPagamento;
 		}
+		System.out.println("Conversor da Forma de Pagamento está vindo NULA");
 		return null;
 	}
 

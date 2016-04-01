@@ -89,13 +89,13 @@
 
 			<p:outputLabel value="Forma de Pagamento" for="formaPagamento" />
 			<p:selectOneMenu id="formaPagamento"
-				value="#{exercicioBean.formaPagamento}">
+				value="#{exercicioBean.formaPagamento}" required="true">
 				
 				<f:selectItem itemLabel="-Selecione-" />
 				<f:selectItems
 					value="#{exercicioBean.metodoPagamento.formasPagamento}"
 					var="formasPagamento" itemLabel="#{formaPagamento.formaPagamento}"
-					itemValue="formaPagamento" />
+					itemValue="#{formaPagamento}" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Cursos Contratados" for="cursosContratados" />

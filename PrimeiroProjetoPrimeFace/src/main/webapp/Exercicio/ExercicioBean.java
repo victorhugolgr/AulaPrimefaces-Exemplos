@@ -69,7 +69,7 @@ public class ExercicioBean implements Serializable {
 		System.out.println("Data Contrato: " + dateFormat.format(this.dataContrato));
 		System.out.println("Valor Contrato: " + this.valorContrato);
 		System.out.println("Método de Pagamento: " + this.metodoPagamento);
-		//System.out.println("Forma de Pagamento: " + this.formaPagamento);
+		System.out.println("Forma de Pagamento: " + this.formaPagamento);
 		System.out.println("Cursos Contratados: ");
 		cursosContratados.forEach(System.out::println);
 
