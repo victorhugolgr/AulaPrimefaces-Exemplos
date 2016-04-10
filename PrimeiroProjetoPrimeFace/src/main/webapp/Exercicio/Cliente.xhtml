@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<h:body>
+	<h:form>
+		<h1>Lista de Cliente</h1>
+		<p:separator />
+
+		<div style="margin: 10px;">
+			<p:commandButton value="Adicionar Cliente"
+				onclick="PF('clientePopup').show()" />
+		</div>
+
+
+		<p:dataTable id="listaCliente"
+			value="#{clienteExercicioBean.listCliente}" var="cliente" rows="5"
+			emptyMessage="Nenhum cliente cadastrado..."
+			paginatorAlwaysVisible="true" paginatorPosition="bottom">
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{cliente.nome}" />
+			</p:column>
+
+			<p:column headerText="Telefone">
+				<h:outputText value="#{cliente.telefone}" />
+			</p:column>
+
+			<p:column style="width:40px">
+				<p:commandButton onclick="PF('confirmacao').show()"
+					icon="ui-icon-trash">
+					<f:setPropertyActionListener value="#{cliente}"
+						target="#{clienteExercicioBean.clienteSelecionado}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<p:confirmDialog header="Exclusão Cliente"
+			message="Deseja excluir este cliente?" widgetVar="confirmacao">
+
+			<p:commandButton value="Sim"
+				action="#{clienteExercicioBean.removerCliente}"
+				update="listaCliente" oncomplete="PF('confirmacao').hide()" />
+			<p:commandButton value="Não" oncomplete="PF('confirmacao').hide()" />
+
+		</p:confirmDialog>
+
+
+		<p:dialog header="Inclusão de Cliente" widgetVar="clientePopup"
+			modal="true" id="clienteCadastro">
+
+			<p:messages id="msg" />
+
+			<p:panelGrid columns="2" id="painelCliente">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{clienteExercicioBean.cliente.nome}"
+					required="true" />
+
+				<p:outputLabel value="Telefone" for="telefone" />
+				<p:inputMask mask="(99) 999?9- 9999"
+					value="#{clienteExercicioBean.cliente.telefone}" id="telefone"
+					required="true" />
+			</p:panelGrid>
+
+			<p:commandButton value="Incluir"
+				action="#{clienteExercicioBean.adicionaCliente}"
+				update="listaCliente painelCliente msg"
+				oncomplete="validaFormPopupCliente(args)" />
+
+		</p:dialog>
+	</h:form>
+
+	<script type="text/javascript">
+		function validaFormPopupCliente(args){
+			if(args.validationFailed){
+				PF('clientePopup').jq.effect("shake");
+			}else{
+				PF('clientePopup').hide();
+			}
+		}
+	</script>
+
+</h:body>
+</html>
